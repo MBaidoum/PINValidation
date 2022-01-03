@@ -23,6 +23,16 @@ public class ProfileController {
         return service.addProfile(profile);
     }
 
+    //
+    @PostMapping("profiles/hidden/{id}")
+    public Profile getProfileByIdPrivate(@PathVariable("id") long id, @RequestBody long profileId) {
+        System.out.println(profileId);
+        if(id != profileId)
+            return service.getProfileByUserIdPrivate(id);
+        else
+            return service.getProfileByUserId(id);
+    }
+
     @GetMapping("/profiles")
     public List<Profile> getProfiles() {
         return service.getAllProfiles();
@@ -31,11 +41,6 @@ public class ProfileController {
     @GetMapping("/profiles/{id}")
     public Profile getProfileById(@PathVariable("id") long id) {
         return service.getProfileByUserId(id);
-    }
-
-    @GetMapping("profiles/hidden/{id}")
-    public Profile getProfileByIdPrivate(@PathVariable("id") long id) {
-        return service.getProfileByUserIdPrivate(id);
     }
 
     @DeleteMapping("/profiles/{id}")

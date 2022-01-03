@@ -39,6 +39,8 @@ public class ProfileServiceImpl implements ProfileService{
         return profile.get();
     }
 
+    //Checks the boolean matrix contained in profile to blank out fields that are private
+    //Does not change values in DB
     @Override
     public Profile getProfileByUserIdPrivate(long id) {
         Optional<Profile> profile = repository.findById(id);
